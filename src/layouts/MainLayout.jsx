@@ -1,5 +1,5 @@
 import Sidebar from "../components/Sidebar";
-import "../styles/mainLayout.css";
+import "../styles/mainlayout.css";
 
 function MainLayout({ children }) {
   return (
