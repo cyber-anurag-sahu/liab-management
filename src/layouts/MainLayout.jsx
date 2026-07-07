@@ -1,20 +1,31 @@
 import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
+import "../styles/mainLayout.css";
 
 function MainLayout({ children }) {
   return (
-    <div style={{ display: "flex" }}>
-
+    <div className="layout-container">
       <Sidebar />
 
-      <div style={{ flex: 1 }}>
+      <div className="main-content">
 
-        <Navbar />
+        <header className="topbar">
 
-        {children}
+          <div>
+            <h3>📚 OpenShelf ERP</h3>
+            <p>Smart Library Management System</p>
+          </div>
+
+          <div className="topbar-user">
+            👤 Student
+          </div>
+
+        </header>
+
+        <main>
+          {children}
+        </main>
 
       </div>
-
     </div>
   );
 }

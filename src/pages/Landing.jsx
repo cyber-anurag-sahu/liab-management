@@ -1,151 +1,88 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/landing.css";
+
 import logo from "../assets/logo.png";
+import heroImage from "../assets/hero-image.png";
 
 function Landing() {
   const navigate = useNavigate();
 
   return (
-    <div className="landing-container">
-
+    <div className="landing">
       {/* Navbar */}
-      <nav className="landing-navbar">
-
-        <div className="landing-logo">
-          <img src={logo} alt="OpenShelf Logo" />
-          <span>OpenShelf</span>
+      <nav className="navbar">
+        <div className="logo-section">
+          <img src={logo} alt="logo" />
+          <h2>OpenShelf</h2>
         </div>
 
-        <div className="nav-buttons">
-          <button
-            className="login-btn"
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </button>
+        <ul className="nav-links">
+          <li>Home</li>
+          <li>Explore</li>
+          <li>Collections</li>
+          <li>About</li>
+          <li>Contact</li>
+        </ul>
 
-          <button
-            className="signup-btn"
-            onClick={() => navigate("/login")}
-          >
-            Sign Up
-          </button>
-        </div>
-
+        <button className="start-btn" onClick={() => navigate("/login")}>
+          Get Started
+        </button>
       </nav>
 
-      {/* Hero Section */}
-      <section className="hero-section">
+      {/* Hero */}
+      <section className="hero">
+        <div className="hero-left">
+          <p className="tagline">Your Digital Library, Anytime Anywhere</p>
 
-        <h1>
-          The Future of Library Management
-        </h1>
+          <h1>
+            Read. Learn.
+            <br />
+            <span>Inspire.</span>
+          </h1>
 
-        <p>
-          OpenShelf brings modern technology to academic
-          libraries. Manage books, digital resources,
-          circulation, and users through one unified
-          platform.
-        </p>
+          <p className="description">
+            OpenShelf is your smart e-library platform to discover, access and
+            grow with knowledge.
+          </p>
 
-        <div className="hero-buttons">
+          <div className="hero-buttons">
+            <button className="primary-btn" onClick={() => navigate("/login")}>
+              Explore Library →
+            </button>
 
-          <button
-            className="explore-btn"
-            onClick={() => navigate("/login")}
-          >
-            Explore Demo
-          </button>
+            <button 
+              className="watch-btn"
+              onClick={() => {
+                alert("📺 Opening OpenShelf Smart Library Tour Video...");
+                window.open("https://www.youtube.com/watch?v=FgoQJ139U60", "_blank");
+              }}
+            >
+              ▶ Watch Intro
+            </button>
+          </div>
 
-           <button
-            className="more-btn"
-            onClick={() => navigate("/login")}
-          >
-            Know More
-          </button>
+          <div className="feature-boxes">
+            <div className="feature-card">
+              <h3>📘</h3>
+              <p>Thousands of E-Books</p>
+            </div>
 
-          <button
-            className="secondary-btn"
-            onClick={() => navigate("/login")}
-          >
-            Get Started
-          </button>
+            <div className="feature-card">
+              <h3>🔍</h3>
+              <p>Smart Search & Categories</p>
+            </div>
 
+            <div className="feature-card">
+              <h3>📱</h3>
+              <p>Access Across Devices</p>
+            </div>
+          </div>
         </div>
 
+        <div className="hero-right">
+          <img src={heroImage} alt="Library Illustration" />
+        </div>
       </section>
-
-      {/* Features */}
-      <section className="features-section">
-
-        <div className="feature-card">
-          <h3>📚 Digital Catalog</h3>
-          <p>Search and manage books instantly</p>
-        </div>
-
-        <div className="feature-card">
-          <h3>🔄 Smart Circulation</h3>
-          <p>Issue, Return and Reserve books</p>
-        </div>
-
-        <div className="feature-card">
-          <h3>📊 Analytics</h3>
-          <p>Library insights and reports</p>
-        </div>
-
-        <div className="feature-card">
-          <h3>💻 Digital Library</h3>
-          <p>E-books, Journals and Thesis</p>
-        </div>
-
-        <div className="feature-card">
-          <h3>👥 Multi-Role Access</h3>
-          <p>Student, Faculty, Librarian, Admin</p>
-        </div>
-
-        <div className="feature-card">
-          <h3>🔐 Secure Access</h3>
-          <p>Role-based authentication system</p>
-        </div>
-
-      </section>
-
-      {/* Statistics */}
-      <section className="stats-section">
-
-        <div className="stat-card">
-          <h2>5000+</h2>
-          <p>Books</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>1200+</h2>
-          <p>Digital Resources</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>350+</h2>
-          <p>Active Users</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>99%</h2>
-          <p>System Availability</p>
-        </div>
-
-      </section>
-
-      {/* Footer */}
-      <footer className="landing-footer">
-
-        <h3>OpenShelf Library ERP</h3>
-
-        <p>
-          Built using React.js • Node.js • Express.js • PostgreSQL
-        </p>
-
-      </footer>
-
     </div>
   );
 }

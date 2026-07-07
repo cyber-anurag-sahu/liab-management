@@ -1,93 +1,104 @@
-import { Link } from "react-router-dom";
-import "../styles/sidebar.css";
+import { NavLink, Link } from "react-router-dom";
 import { FaBookOpen } from "react-icons/fa";
+import logo from "../assets/logo.png";
+
+import "../styles/sidebar.css";
 
 function Sidebar() {
 
-    const userRole = localStorage.getItem("role");
+  const userRole = localStorage.getItem("role");
 
-    const handleLogout = () => {
-        localStorage.removeItem("role");
-    };
+  const handleLogout = () => {
+    localStorage.removeItem("role");
+  };
 
-    return (
-        <div className="sidebar">
+  return (
+    <div className="sidebar">
 
-            <h3 className="logo">
-                📚 OpenShelf
-            </h3>
+      <div className="sidebar-logo">
 
-            <ul>
+        <img
+          src={logo}
+          alt="OpenShelf"
+          className="sidebar-logo-img"
+        />
 
-                <li>
-                    <Link to="/dashboard">
-                        🏠 Dashboard
-                    </Link>
-                </li>
+        <h3>OpenShelf</h3>
 
-                <li>
-                    <Link to="/resources">
-                        📚 Resources
-                    </Link>
-                </li>
+      </div>
 
-                <li>
-                    <Link to="/circulation">
-                        🔄 Circulation
-                    </Link>
-                </li>
+      <ul>
 
-                <li>
-                    <Link to="/profile">
-                        👤 Profile
-                    </Link>
-                </li>
+        <li>
+          <NavLink to="/dashboard">
+            🏠 Dashboard
+          </NavLink>
+        </li>
 
-                <li>
-                    <Link to="/digital-library">
-                        <FaBookOpen /> Digital Library
-                    </Link>
-                </li>
+        <li>
+          <NavLink to="/resources">
+            📚 Resources
+          </NavLink>
+        </li>
 
-                {(userRole === "Admin" ||
-                  userRole === "Librarian") && (
-                    <li>
-                        <Link to="/book-management">
-                            📚 Book Management
-                        </Link>
-                    </li>
-                )}
+        <li>
+          <NavLink to="/circulation">
+            🔄 Circulation
+          </NavLink>
+        </li>
 
-                {userRole === "Admin" && (
-                    <li>
-                        <Link to="/user-management">
-                            👥 User Management
-                        </Link>
-                    </li>
-                )}
+        <li>
+          <NavLink to="/profile">
+            👤 Profile
+          </NavLink>
+        </li>
 
-                {(userRole === "Admin" ||
-                  userRole === "Librarian") && (
-                    <li>
-                        <Link to="/issue-return">
-                            🔄 Issue / Return
-                        </Link>
-                    </li>
-                )}
+        <li>
+          <NavLink to="/digital-library">
+            <FaBookOpen />
+            &nbsp; Digital Library
+          </NavLink>
+        </li>
 
-                <li>
-                    <Link
-                        to="/"
-                        onClick={handleLogout}
-                    >
-                        🚪 Logout
-                    </Link>
-                </li>
+        {(userRole === "Admin" ||
+          userRole === "Librarian") && (
+          <li>
+            <NavLink to="/book-management">
+              📚 Book Management
+            </NavLink>
+          </li>
+        )}
 
-            </ul>
+        {userRole === "Admin" && (
+          <li>
+            <NavLink to="/user-management">
+              👥 User Management
+            </NavLink>
+          </li>
+        )}
 
-        </div>
-    );
+        {(userRole === "Admin" ||
+          userRole === "Librarian") && (
+          <li>
+            <NavLink to="/issue-return">
+              🔄 Issue / Return
+            </NavLink>
+          </li>
+        )}
+
+        <li>
+          <Link
+            to="/"
+            onClick={handleLogout}
+          >
+            🚪 Logout
+          </Link>
+        </li>
+
+      </ul>
+
+    </div>
+  );
 }
 
 export default Sidebar;

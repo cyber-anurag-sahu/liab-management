@@ -1,24 +1,38 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import authService from "../services/authService";
 import "../styles/login.css";
 
 function Login() {
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState(""); // Password is field input, but we authenticate using email & role for simplicity
   const [role, setRole] = useState("Student");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
- const handleLogin = () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
-  localStorage.setItem("role", role);
-
-  if (role === "Admin") {
-    navigate("/admin-dashboard");
-  } else if (role === "Librarian") {
-    navigate("/librarian-dashboard");
-  } else {
-    navigate("/dashboard");
-  }
-};
+    try {
+      const user = await authService.login(email, role);
+      
+      if (user.role === "Admin") {
+        navigate("/admin-dashboard");
+      } else if (user.role === "Librarian") {
+        navigate("/librarian-dashboard");
+      } else {
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      setError(err.message || "Invalid email or role");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="login-bg">
@@ -29,7 +43,7 @@ function Login() {
 
             <div className="card shadow-lg border-0 login-card">
 
-              <div className="card-body p-5">
+              <form className="card-body p-5" onSubmit={handleLogin}>
 
                 <h2 className="text-center mb-2 title">
                   OpenShelf
@@ -39,13 +53,22 @@ function Login() {
                   Smart Library ERP System
                 </p>
 
+                {error && (
+                  <div className="alert alert-danger text-center py-2" role="alert">
+                    {error}
+                  </div>
+                )}
+
                 <div className="mb-3">
                   <label>Email</label>
 
                   <input
                     type="email"
                     className="form-control"
-                    placeholder="Enter email"
+                    placeholder="Enter email (e.g. admin@openshelf.com)"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </div>
 
@@ -56,6 +79,8 @@ function Login() {
                     type="password"
                     className="form-control"
                     placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 
@@ -75,13 +100,14 @@ function Login() {
                 </div>
 
                 <button
+                  type="submit"
                   className="btn login-btn w-100"
-                  onClick={handleLogin}
+                  disabled={loading}
                 >
-                  Login
+                  {loading ? "Logging in..." : "Login"}
                 </button>
 
-              </div>
+              </form>
 
             </div>
 

@@ -1,105 +1,257 @@
-.dashboard-container{
-
-  min-height:100vh;
-
-  padding:30px;
-
-  background:linear-gradient(
-    135deg,
-    #dceeff,
-    #ffd6e7
-  );
+.dashboard-container {
+  padding: 30px;
 }
 
-.dashboard-container h2{
-  margin-bottom:30px;
-  color:#5b7fff;
+/* =========================
+   Welcome Banner
+========================= */
+
+.welcome-banner {
+
+  background: rgba(255,255,255,0.55);
+
+  backdrop-filter: blur(15px);
+
+  border-radius: 24px;
+
+  padding: 25px;
+
+  margin-bottom: 30px;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
+
+  animation: fadeInUp .8s ease;
 }
 
-.dashboard-grid{
+.welcome-banner h2 {
 
-  display:grid;
+  margin: 0;
+
+  font-size: 48px;
+
+  font-weight: 700;
+
+  background:
+    linear-gradient(
+      90deg,
+      #5f7df7,
+      #e93799
+    );
+
+ background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.welcome-banner p {
+
+  margin-top: 10px;
+
+  color: #555;
+
+  font-size: 18px;
+}
+
+/* =========================
+   Grid
+========================= */
+
+.dashboard-grid {
+
+  display: grid;
 
   grid-template-columns:
-  repeat(auto-fit,minmax(220px,1fr));
+    repeat(auto-fit,minmax(220px,1fr));
 
-  gap:20px;
+  gap: 25px;
+
+  margin-bottom: 25px;
 }
 
-.dashboard-card{
+/* =========================
+   Cards
+========================= */
 
-  background:white;
+.dashboard-card {
 
-  padding:25px;
+  background:
+    rgba(255,255,255,.65);
 
-  border-radius:20px;
+  backdrop-filter: blur(15px);
 
-  box-shadow:0 4px 15px rgba(0,0,0,.08);
+  border-radius: 24px;
 
-  text-align:center;
+  padding: 30px;
 
-  transition:.3s;
+  text-align: center;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
+
+  transition: .35s ease;
 }
 
-.dashboard-card:hover{
-  transform:translateY(-5px);
+.card-hover:hover {
+
+  transform:
+    translateY(-10px)
+    scale(1.03);
+
+  box-shadow:
+    0 20px 40px
+    rgba(95,125,247,.25);
 }
 
-.dashboard-card h4{
-  color:#666;
+.dashboard-card h4 {
+
+  color: #555;
+
+  margin-bottom: 15px;
+
+  font-size: 22px;
 }
 
-.dashboard-card h2{
-  color:#6ea8fe;
+.dashboard-card h2 {
+
+  color: #5f7df7;
+
+  font-size: 42px;
+
+  font-weight: 700;
 }
 
-.activity-section{
+/* =========================
+   Activity
+========================= */
 
-  background:white;
+.activity-section {
 
-  margin-top:25px;
+  background:
+    rgba(255,255,255,.65);
 
-  padding:20px;
+  backdrop-filter: blur(15px);
 
-  border-radius:20px;
+  border-radius: 24px;
 
-  box-shadow:0 4px 15px rgba(0,0,0,.08);
+  padding: 25px;
+
+  margin-top: 20px;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
 }
 
-.activity-section ul{
-  padding-left:20px;
+.activity-section h4 {
+
+  color: #5f7df7;
+
+  font-size: 30px;
+
+  margin-bottom: 20px;
 }
 
-.activity-section li{
-  margin-bottom:10px;
+.activity-section ul {
+
+  list-style: none;
+
+  padding: 0;
 }
 
-.quick-actions{
+.activity-section li {
 
-  margin-top:25px;
+  padding: 12px 0;
 
-  display:flex;
+  border-bottom:
+    1px solid rgba(0,0,0,.08);
 
-  gap:15px;
-
-  flex-wrap:wrap;
+  transition: .3s;
 }
 
-.action-btn{
+.activity-section li:hover {
 
-  background:#ffb6d9;
+  color: #5f7df7;
 
-  color:white;
-
-  border:none;
-
-  padding:12px 20px;
-
-  border-radius:12px;
-
-  transition:.3s;
+  transform: translateX(8px);
 }
 
-.action-btn:hover{
-  background:#ff92c5;
+/* =========================
+   Quick Actions
+========================= */
+
+.quick-actions {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 15px;
+
+  margin-top: 25px;
+}
+
+.action-btn {
+
+  border: none;
+
+  padding: 14px 30px;
+
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  background:
+    linear-gradient(
+      90deg,
+      #5f7df7,
+      #f6add5
+    );
+
+  transition: .3s;
+}
+
+.action-btn:hover {
+
+  transform:
+    translateY(-4px);
+
+  box-shadow:
+    0 12px 25px rgba(0,0,0,.15);
+}
+
+/* =========================
+   Animation
+========================= */
+
+@keyframes fadeInUp {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(30px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+.dashboard-container {
+  width: 100%;
+  max-width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 10px;
 }
